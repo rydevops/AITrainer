@@ -35,8 +35,33 @@ how to run a single Jest test.
   make sure the layout works at both desktop and mobile/tablet screen sizes.
 - Keep application logic separate from DOM and UI code so it can be unit tested
   with Jest without a browser.
-- Write Jest tests next to the code they cover or in a matching `__tests__`
-  folder, using the `*.test.ts` naming pattern.
+- Put all Jest tests in the top-level `tests/` folder, using the `*.test.ts`
+  naming pattern. Do not place tests inside `src/`.
+
+## Folder structure (planned)
+
+This layout is planned and has not been created yet. Update it when the folders
+exist.
+
+```
+AITrainer/
+├── public/              Static assets copied as-is into the build output
+│   ├── manifest.webmanifest   PWA web app manifest
+│   └── icons/           App icons for desktop and mobile
+├── src/                 Application source (TypeScript)
+│   ├── core/            Pure logic with no DOM access; unit tested with Jest
+│   ├── ui/              DOM and UI components
+│   ├── app/             App bootstrap and wiring of core and ui
+│   └── sw.ts            Service worker
+├── tests/               All Jest tests (unit and integration); mirrors src/ layout
+├── package.json
+├── tsconfig.json
+├── jest.config.*        Jest configuration
+├── eslint.config.*      ESLint configuration
+├── AGENT.md
+├── CLAUDE.md
+└── README.md
+```
 
 ## Linting rules (base set)
 
