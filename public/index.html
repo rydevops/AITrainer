@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="description" content="AITrainer: a simple work tracker." />
+    <title>AITrainer</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>AITrainer</h1>
+      <button id="new-task" type="button" class="primary">New task</button>
+    </header>
+
+    <main>
+      <form id="task-form" class="task-form" autocomplete="off" hidden>
+        <h2 data-form-heading>New task</h2>
+
+        <label>
+          Title
+          <input name="title" type="text" required placeholder="Supports **markdown**" />
+        </label>
+
+        <label>
+          Details
+          <textarea name="details" rows="6" placeholder="Supports markdown"></textarea>
+        </label>
+
+        <div class="date-grid">
+          <label>
+            Due date
+            <input name="dueDate" type="date" />
+          </label>
+          <label>
+            Completed date
+            <input name="completedDate" type="date" />
+          </label>
+          <label>
+            Last actioned date
+            <input name="lastActionedDate" type="date" />
+          </label>
+        </div>
+
+        <p class="form-error" data-form-error role="alert"></p>
+
+        <div class="form-actions">
+          <button type="submit" class="primary">Save</button>
+          <button type="button" data-form-cancel>Cancel</button>
+        </div>
+      </form>
+
+      <section id="task-list" class="task-list" aria-live="polite"></section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "name": "aitrainer",
+  "version": "0.1.0",
+  "description": "AITrainer: a browser-based work tracker (PWA)",
+  "scripts": {
+    "test": "jest",
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.sw.json",
+    "lint": "eslint .",
+    "dev": "node scripts/build.mjs --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rydevops/AITrainer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/rydevops/AITrainer/issues"
+  },
+  "homepage": "https://github.com/rydevops/AITrainer#readme",
+  "dependencies": {
+    "dompurify": "^3.5.0",
+    "marked": "^18.3.0"
+  },
+  "devDependencies": {
+    "@types/dompurify": "^3.0.5",
+    "@types/jest": "^30.0.0",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.15.0",
+    "jest": "^30.5.2",
+    "jest-environment-jsdom": "^30.5.2",
+    "ts-jest": "^29.4.15",
+    "typescript": "~5.9.0",
+    "typescript-eslint": "^8.74.0"
+  },
+  "private": "true"
+}
