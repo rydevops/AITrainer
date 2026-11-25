@@ -32,11 +32,16 @@ AITrainer is a browser-based work tracker.
 - Tests use Jest.
 - Linting uses ESLint with the TypeScript parser and enforces the rules listed below.
 
-Status: the project is at the initialization stage. The root `README.md` contains
-only the project title. The TypeScript, PWA, Jest, and ESLint setup has not been
-created yet. Until it exists, do not claim build, test, or lint commands work.
-Once the setup is added, replace this section with verified commands, including
-how to run a single Jest test.
+Verified commands (run from the repository root after `npm install`):
+
+- `npm run build`: bundles `src/app/main.ts` and `src/sw.ts` with esbuild and
+  copies `public/` into `dist/`. `npm run dev` rebuilds on change.
+- `npm test`: runs the Jest suite in `tests/`.
+- `npx jest tests/core/tasks.test.ts`: runs a single Jest test file.
+- `npm run lint`: runs ESLint.
+- `npm run typecheck`: runs `tsc` for the app and the service worker.
+
+The app is a static site: serve `dist/` with any static file server to try it.
 
 ## Development workflow
 
@@ -57,30 +62,33 @@ how to run a single Jest test.
 - Put all Jest tests in the top-level `tests/` folder, using the `*.test.ts`
   naming pattern. Do not place tests inside `src/`.
 
-## Folder structure (planned)
-
-This layout is planned and has not been created yet. Update it when the folders
-exist.
+## Folder structure
 
 ```
 AITrainer/
-├── public/              Static assets copied as-is into the build output
+├── public/              Static assets copied as-is into dist/
+│   ├── index.html, styles.css
 │   ├── manifest.webmanifest   PWA web app manifest
 │   └── icons/           App icons for desktop and mobile
+├── scripts/build.mjs    esbuild bundling and copy to dist/
 ├── src/                 Application source (TypeScript)
 │   ├── core/            Pure logic with no DOM access; unit tested with Jest
 │   ├── ui/              DOM and UI components
 │   ├── app/             App bootstrap and wiring of core and ui
-│   └── sw.ts            Service worker
+│   └── sw.ts            Service worker (tsconfig.sw.json, WebWorker lib)
 ├── tests/               All Jest tests (unit and integration); mirrors src/ layout
 ├── package.json
-├── tsconfig.json
-├── jest.config.*        Jest configuration
-├── eslint.config.*      ESLint configuration
+├── tsconfig.json, tsconfig.sw.json
+├── jest.config.js       Jest configuration
+├── eslint.config.mjs    ESLint configuration
 ├── AGENT.md
 ├── CLAUDE.md
 └── README.md
 ```
+
+Service worker caching is network-first with a cache fallback, so updated
+assets reach users without bumping the cache name. Keep it that way unless
+offline-first behavior is explicitly required.
 
 ## Linting rules (base set)
 
