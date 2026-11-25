@@ -50,6 +50,9 @@ The app is a static site: serve `dist/` with any static file server to try it.
   or `fix/<short-description>`.
 - Every change reaches `main` through a pull request. Do not merge without a PR.
 - Run the linter and the Jest test suite before opening or updating a PR.
+- GitHub Pages serves the `main` branch root without a build step. After
+  `npm run build`, copy `dist/app.js` and `dist/sw.js` into `public/` and commit
+  them, or `public/index.html` will fail to load `app.js`.
 - Keep PRs focused on one feature or fix.
 
 ## Architecture and conventions
